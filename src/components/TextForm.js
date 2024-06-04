@@ -29,10 +29,11 @@ export default function TextForm(props) {
         props.showAlert("Emails are extracted!","success");
     }
     const CopyToClipboard = () => {
-        let newText = document.getElementById("myBox");
-        newText.select();
-        navigator.clipboard.writeText(newText.value);
-        document.getSelection().removeAllRanges();
+        //let newText = document.getElementById("myBox");
+        //newText.select();
+        //navigator.clipboard.writeText(newText.value);
+        //document.getSelection().removeAllRanges();
+        navigator.clipboard.writeText(text);
         props.showAlert("Copied to clipboard!","success");
     }
     const RemoveExtraSpaces = () => {
@@ -62,7 +63,7 @@ export default function TextForm(props) {
         <div className="container my-3" style={{color: props.mode==='dark'? 'white':'#042743'}}>
             <h2>Your text summary</h2>
 
-            <p> <b>{text.split(" ").filter((element)=>{return element.length!==0}).length}</b> words, <b>{text.length}</b> characters</p>
+            <p> <b>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length}</b> words, <b>{text.length}</b> characters</p>
             
             <p><b>{0.008*text.split(" ").filter((element)=>{return element.length!==0}).length}</b> Minutes read</p>
 
